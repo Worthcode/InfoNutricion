@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bienvenido</title>
+</head>
+<body>
+<h2>Bienvenido a InfoNutrición</h2>
+
+<p>¿Qué deseas hacer?</p>
+
+<a th:href="@{/usuarios/registro}">
+    <button>Registrar Usuario</button>
+</a>
+
+<a th:href="@{/login}">
+    <button>Iniciar Sesión</button>
+</a>
+
+</body>
+</html>

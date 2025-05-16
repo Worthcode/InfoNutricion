@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registro de Usuario</title>
+</head>
+<body>
+<h2>Registro de Usuario</h2>
+
+<form th:action="@{/usuarios/registrar}" th:object="${usuario}" method="post">
+    <label>Nombre:</label>
+    <input type="text" th:field="*{nombre}" required><br>
+
+    <label>Correo:</label>
+    <input type="email" th:field="*{correo}" required><br>
+
+    <label>Contraseña:</label>
+    <input type="password" th:field="*{contrasena}" required><br>
+
+    <button type="submit">Registrarse</button>
+</form>
+
+<!-- Mensaje de éxito al registrarse -->
+<div th:if="${param.exito}">
+    <p style="color: green">Registro exitoso, revisa tu correo para verificar la cuenta.</p>
+</div>
+
+<!-- Mensaje de error si el correo ya está registrado -->
+<div th:if="${error}">
+    <p style="color: red" th:text="${error}"></p>
+</div>
+
+<!-- Mensaje de cuenta verificada -->
+<div th:if="${param.verificado}">
+    <p style="color: green">¡Cuenta verificada exitosamente!</p>
+</div>
+
+<!-- Mensaje si el token de verificación no es válido -->
+<div th:if="${param.invalido}">
+    <p style="color: red">Token inválido o expirado.</p>
+</div>
+
+</body>
+</html>
