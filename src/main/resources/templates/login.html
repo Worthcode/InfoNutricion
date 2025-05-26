@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar Sesión</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f2f6fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #004c99;
+        }
+
+        .mensaje {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .error {
+            color: #721c24;
+            background-color: #f8d7da;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        .exito {
+            color: #155724;
+            background-color: #d4edda;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        .volver {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            text-decoration: none;
+            color: #0066cc;
+        }
+
+        .volver:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="login-container">
+    <h2>Iniciar Sesión</h2>
+
+    <form th:action="@{/login}" method="post">
+        <label>Correo:</label>
+        <input type="text" name="username" required>
+
+        <label>Contraseña:</label>
+        <input type="password" name="password" required>
+
+        <button type="submit">Ingresar</button>
+    </form>
+
+    <div class="mensaje" th:if="${param.error}">
+        <p class="error">Credenciales incorrectas o cuenta no verificada.</p>
+    </div>
+
+    <div class="mensaje" th:if="${param.logout}">
+        <p class="exito">Has cerrado sesión correctamente</p>
+    </div>
+
+    <a class="volver" href="/">← Volver a la página principal</a>
+</div>
+</body>
+</html>

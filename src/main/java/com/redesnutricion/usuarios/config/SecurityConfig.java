@@ -32,9 +32,10 @@ public class SecurityConfig {
                         .permitAll()
                 )
                 .logout(logout -> logout
-                        .logoutSuccessUrl("/login?logout")
+                        .logoutSuccessUrl("/") // Redirige al home principal
                         .permitAll()
-                );
+                )
+;
 
         return http.build();
     }

@@ -1,25 +1,98 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Lista de Usuarios</title>
+    <meta charset="UTF-8">
+    <title>Evaluar Enlace</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f2f6fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h2, h3 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input[type="text"] {
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            width: 100%;
+        }
+
+        button {
+            padding: 12px;
+            font-size: 16px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #004c99;
+        }
+
+        .resultado {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e7f4e4;
+            color: #155724;
+            border-left: 4px solid #28a745;
+            border-radius: 8px;
+        }
+
+        .logout-btn {
+            margin-top: 20px;
+            background-color: #dc3545;
+        }
+
+        .logout-btn:hover {
+            background-color: #c82333;
+        }
+    </style>
 </head>
 <body>
-<h2>Usuarios Registrados</h2>
+<div class="container">
+    <h2>Bienvenido</h2>
+    <h3>Ingresa un enlace para evaluar su confiabilidad</h3>
 
-<table border="1">
-    <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Correo</th>
-        <th>Verificado</th>
-    </tr>
-    <tr th:each="usuario : ${usuarios}">
-        <td th:text="${usuario.id}"></td>
-        <td th:text="${usuario.nombre}"></td>
-        <td th:text="${usuario.correo}"></td>
-        <td th:text="${usuario.verificado ? 'Sí' : 'No'}"></td>
-    </tr>
-</table>
+    <form th:action="@{/evaluar}" method="post">
+        <input type="text" name="url" placeholder="https://ejemplo.com" required>
+        <button type="submit">Evaluar</button>
+    </form>
 
+    <div th:if="${resultado}" class="resultado">
+        <p th:text="${resultado}"></p>
+    </div>
+
+    <form th:action="@{/logout}" method="post">
+        <button class="logout-btn" type="submit">Cerrar sesión</button>
+    </form>
+</div>
 </body>
 </html>

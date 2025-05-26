@@ -41,10 +41,6 @@ Fsrc/main/java/com/redesnutricion/usuarios/servicio/CorreoServicio.java,a\a\aa8
 Lsrc/main/java/com/redesnutricion/usuarios/controlador/InicioControlador.java,9\2\92bbb56676010302b3303dfd234ed5e29d3de229
 €
 Psrc/main/java/com/redesnutricion/usuarios/servicio/CustomUserDetailsService.java,0\8\0843f024c61938f0245ebb629271e4bc46a55354
-z
-Jsrc/main/java/com/redesnutricion/usuarios/controlador/Homecontrolador.java,3\2\32817fb0bbe741f816c94ec1e73dd1bb0e86dc2b
-z
-Jsrc/main/java/com/redesnutricion/usuarios/controlador/homecontrolador.java,c\e\ce55ffcb8e8b8bdbcf021e7ba82c869ac528097e
 w
 Gsrc/test/java/com/redesnutricion/usuarios/UsuariosApplicationTests.java,b\e\be32a01b1e84cbdce5fe065070da4d19aae7b5fd
 4
@@ -58,3 +54,8 @@ U
 .gitattributes,2\4\24139dae656713ba861751fb2c2ac38839349a7a
 8
 mvnw.cmd,1\f\1f1763f358c257ea3515417352b82b0165647ad1
+:
+
+Dockerfile,6\6\6651ddff6eb82c840ced7c1dddee15c6e1913dd4
+B
+docker-compose.yml,3\5\35b8c13cf2eb2a194eada000eb310d65aed53b2a
