@@ -1,5 +1,6 @@
 package com.redesnutricion.usuarios.controlador;
 
+import com.redesnutricion.analizador.dtoanalisis.EnlaceDto;
 import com.redesnutricion.usuarios.dto.UsuarioRegistroDTO;
 import com.redesnutricion.usuarios.modelo.TokenVerificacion;
 import com.redesnutricion.usuarios.modelo.Usuario;
@@ -46,8 +47,11 @@ public class UsuarioControlador {
     @GetMapping("/lista")
     public String listarUsuarios(Model modelo) {
         modelo.addAttribute("usuarios", usuarioServicio.obtenerTodos());
-        return "lista"; // Vista lista.html
+        modelo.addAttribute("enlaceDto", new EnlaceDto()); // <- Añade esto
+        return "lista";
     }
+
+
     @GetMapping("/validar")
     public String validarCuenta(@RequestParam("token") String token) {
         TokenVerificacion verificacion = tokenRepositorio.findByToken(token);
@@ -66,5 +70,6 @@ public class UsuarioControlador {
 
 
 }
+
 
 
