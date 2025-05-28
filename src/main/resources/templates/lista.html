@@ -1,25 +1,145 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Lista de Usuarios</title>
+    <meta charset="UTF-8">
+    <title>Lista de Usuarios y Evaluación de Enlaces</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f2f6fc;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            background: white;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .usuarios {
+            margin-top: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ccc;
+            text-align: left;
+        }
+
+        th {
+            background-color: #0066cc;
+            color: white;
+        }
+
+        .formulario {
+            margin-top: 30px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            padding: 12px 20px;
+            font-size: 16px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #004c99;
+        }
+
+        .resultado {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e7f4e4;
+            color: #155724;
+            border-left: 4px solid #28a745;
+            border-radius: 8px;
+        }
+
+        .logout {
+            text-align: right;
+            margin-top: 20px;
+        }
+
+        .logout form {
+            display: inline;
+        }
+
+        .logout button {
+            background-color: #dc3545;
+        }
+
+        .logout button:hover {
+            background-color: #c82333;
+        }
+    </style>
 </head>
 <body>
-<h2>Usuarios Registrados</h2>
+<div class="container">
+    <h2>Lista de Usuarios</h2>
 
-<table border="1">
-    <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Correo</th>
-        <th>Verificado</th>
-    </tr>
-    <tr th:each="usuario : ${usuarios}">
-        <td th:text="${usuario.id}"></td>
-        <td th:text="${usuario.nombre}"></td>
-        <td th:text="${usuario.correo}"></td>
-        <td th:text="${usuario.verificado ? 'Sí' : 'No'}"></td>
-    </tr>
-</table>
+    <div class="usuarios">
+        <table>
+            <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Verificado</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="usuario : ${usuarios}">
+                <td th:text="${usuario.nombre}">Nombre</td>
+                <td th:text="${usuario.correo}">Correo</td>
+                <td th:text="${usuario.verificado ? 'Sí' : 'No'}">Verificado</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
+    <div class="formulario">
+        <h3>Evaluar confiabilidad de un enlace</h3>
+        <form th:action="@{/evaluar}" th:object="${enlaceDto}" method="post">
+            <input type="text" th:field="*{url}" placeholder="https://ejemplo.com" required>
+            <button type="submit">Evaluar</button>
+        </form>
+
+        <div th:if="${resultado}" class="resultado">
+            <p th:text="${resultado}"></p>
+        </div>
+    </div>
+
+    <div class="logout">
+        <form th:action="@{/logout}" method="post">
+            <button type="submit">Cerrar sesión</button>
+        </form>
+    </div>
+</div>
 </body>
 </html>
